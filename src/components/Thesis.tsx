@@ -6,7 +6,7 @@ export function Thesis() {
         <section className="relative w-full py-20 bg-background" id="thesis">
             <div className="absolute inset-0 z-0 bg-cover bg-center opacity-30 pointer-events-none" style={{ backgroundImage: "url('/home-bg-1.png')" }}></div>
             <div className="relative z-10 max-w-6xl mx-auto px-4">
-                <div className="mb-16 max-w-3xl">
+                <div className="mb-16 max-w-3xl mx-auto text-center">
                     <h2 className="text-41 md:text-48 font-tobias font-700 tracking-tight mb-4 text-white">
                         The Infrastructure Layer
                     </h2>
