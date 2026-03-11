@@ -70,8 +70,8 @@ export function InterestForm() {
                                 <Input name="city" placeholder="City *" required error={state.errors?.city?.[0]} />
 
                                 <div className="w-full relative flex flex-col">
-                                    <select name="country" required className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
-                                        <option value="" disabled selected>Country of Residence *</option>
+                                    <select name="country" required defaultValue="" className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
+                                        <option value="" disabled>Country of Residence *</option>
                                         <option value="US">United States</option>
                                         <option value="UK">United Kingdom</option>
                                         <option value="CA">Canada</option>
@@ -92,8 +92,8 @@ export function InterestForm() {
                                 </div>
 
                                 <div className="w-full relative flex flex-col">
-                                    <select name="capitalType" required className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
-                                        <option value="" disabled selected>Capital Type *</option>
+                                    <select name="capitalType" required defaultValue="" className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
+                                        <option value="" disabled>Capital Type *</option>
                                         <option value="Personal">Personal / Angel</option>
                                         <option value="Fund/Family Office">Fund / Family Office</option>
                                     </select>
@@ -121,8 +121,8 @@ export function InterestForm() {
                             <h3 className="text-19 font-tobias font-700 text-white border-b border-border pb-2">4. Compliance & Consent</h3>
 
                             <div className="w-full md:w-1/2 relative flex flex-col mb-6">
-                                <select name="citizenship" required className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
-                                    <option value="" disabled selected>Country of Citizenship *</option>
+                                <select name="citizenship" required defaultValue="" className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
+                                    <option value="" disabled>Country of Citizenship *</option>
                                     <option value="US">United States</option>
                                     <option value="UK">United Kingdom</option>
                                     <option value="CA">Canada</option>

@@ -1,6 +1,7 @@
 "use server";
 
 import { z } from "zod";
+import { db } from "@/lib/db/client";
 
 const formSchema = z.object({
     fullName: z.string().min(2, "Name is required"),
@@ -9,7 +10,7 @@ const formSchema = z.object({
     city: z.string().min(1, "City is required"),
     country: z.string().min(1, "Country is required"),
     referrer: z.string().optional(),
-    amount: z.number().min(5000, "Minimum investment is typically $5,000 for RUVs"),
+    amount: z.number(),
     capitalType: z.enum(["Personal", "Fund/Family Office"]),
     background: z.string().min(10, "Please provide a brief background"),
     howCanHelp: z.string().optional(),
@@ -33,6 +34,8 @@ export async function submitInterestForm(
     prevState: InterestFormState,
     formData: FormData
 ): Promise<InterestFormState> {
+    void prevState;
+
     const rawData = {
         fullName: formData.get("fullName"),
         email: formData.get("email"),
@@ -60,13 +63,65 @@ export async function submitInterestForm(
         };
     }
 
-    // TODO: Add actual database integration here (e.g., Supabase / PostgreSQL)
-    // TODO: Add email service integration (Resend / SendGrid) to notify invest@hemut.com
+    const normalizedData = {
+        fullName: parsed.data.fullName.trim(),
+        email: parsed.data.email.trim().toLowerCase(),
+        phone: parsed.data.phone?.trim() || null,
+        city: parsed.data.city.trim(),
+        country: parsed.data.country.trim(),
+        referrer: parsed.data.referrer?.trim() || null,
+        amountUsd: parsed.data.amount.toFixed(2),
+        capitalType: parsed.data.capitalType,
+        background: parsed.data.background.trim(),
+        howCanHelp: parsed.data.howCanHelp?.trim() || null,
+        citizenship: parsed.data.citizenship.trim(),
+        notRestrictedCountry: parsed.data.notRestrictedCountry,
+        isAccredited: parsed.data.isAccredited ?? null,
+        consentToStore: parsed.data.consentToStore,
+    };
 
-    console.log("New Investor Interest Submission:", parsed.data);
-
-    // Simulate network delay for realistic UX
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    try {
+        await db`
+            INSERT INTO investor_interest (
+                full_name,
+                email,
+                phone,
+                city,
+                country,
+                referrer,
+                amount_usd,
+                capital_type,
+                background,
+                how_can_help,
+                citizenship,
+                not_restricted_country,
+                is_accredited,
+                consent_to_store
+            )
+            VALUES (
+                ${normalizedData.fullName},
+                ${normalizedData.email},
+                ${normalizedData.phone},
+                ${normalizedData.city},
+                ${normalizedData.country},
+                ${normalizedData.referrer},
+                ${normalizedData.amountUsd},
+                ${normalizedData.capitalType},
+                ${normalizedData.background},
+                ${normalizedData.howCanHelp},
+                ${normalizedData.citizenship},
+                ${normalizedData.notRestrictedCountry},
+                ${normalizedData.isAccredited},
+                ${normalizedData.consentToStore}
+            )
+        `;
+    } catch (error) {
+        console.error("Failed to store investor interest submission:", error);
+        return {
+            success: false,
+            message: "We could not submit your interest right now. Please try again shortly.",
+        };
+    }
 
     return {
         success: true,
