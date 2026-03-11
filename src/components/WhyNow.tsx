@@ -22,11 +22,11 @@ export function WhyNow() {
                                 <h3 className="text-13 font-700 tracking-0832 text-pastel-orange uppercase mb-2 font-oldschool-grotesk">Round Structure</h3>
                                 <p className="text-21 sm:text-24 font-tobias font-700 text-white leading-28">Friends & Family / Seed Ext.</p>
                             </div>
-                            <div className="pt-4 border-t border-border">
+                            <div className="pt-4">
                                 <p className="text-15 text-dark-gray-1 mb-1 font-oldschool-grotesk">Target Raise via RUV</p>
                                 <p className="text-21 font-700 text-white font-oldschool-grotesk">Up to $700k</p>
                             </div>
-                            <div className="pt-4 border-t border-border">
+                            <div className="pt-4">
                                 <p className="text-15 text-dark-gray-1 mb-1 font-oldschool-grotesk">Valuation Cap Range</p>
                                 <p className="text-21 font-700 text-white font-oldschool-grotesk">$45M &ndash; $50M</p>
                             </div>

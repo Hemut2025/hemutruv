@@ -35,7 +35,7 @@ export function InterestForm() {
                         Thank you for your interest in Hemut. We have recorded your information. Please use the widget below to schedule your 10-15 minute introductory call.
                     </p>
 
-                    <div className="mt-8 w-full min-h-[600px] bg-white rounded-xl overflow-hidden border border-border">
+                    <div className="mt-8 w-full min-h-[600px] bg-white rounded-xl overflow-hidden">
                         <InlineWidget
                             url={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/placeholder-hemut/15min"}
                             styles={{ height: "600px", width: "100%" }}
@@ -61,7 +61,7 @@ export function InterestForm() {
                     <form action={formAction} className="space-y-8">
                         {/* Identity Section */}
                         <div className="space-y-4">
-                            <h3 className="text-19 font-tobias font-700 text-white border-b border-border pb-2">1. Identity</h3>
+                            <h3 className="text-19 font-tobias font-700 text-white pb-2">1. Identity</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Input name="fullName" placeholder="Full Name *" required error={state.errors?.fullName?.[0]} />
                                 <Input name="email" type="email" placeholder="Email Address *" required error={state.errors?.email?.[0]} />
@@ -84,7 +84,7 @@ export function InterestForm() {
 
                         {/* Investment Intent */}
                         <div className="space-y-4">
-                            <h3 className="text-19 font-tobias font-700 text-white border-b border-border pb-2">2. Investment Intent</h3>
+                            <h3 className="text-19 font-tobias font-700 text-white pb-2">2. Investment Intent</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="relative">
                                     <span className="absolute left-3 top-3 text-slate-500">$</span>
@@ -104,7 +104,7 @@ export function InterestForm() {
 
                         {/* Background */}
                         <div className="space-y-4">
-                            <h3 className="text-19 font-tobias font-700 text-white border-b border-border pb-2">3. Background</h3>
+                            <h3 className="text-19 font-tobias font-700 text-white pb-2">3. Background</h3>
                             <div className="space-y-4">
                                 <div className="w-full relative flex flex-col">
                                     <textarea name="background" required placeholder="Short professional background (e.g. Current role, prior exits, thesis focus) *" className="flex min-h-[100px] w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange resize-none p-4 placeholder:text-slate-500 text-foreground"></textarea>
@@ -118,7 +118,7 @@ export function InterestForm() {
 
                         {/* Compliance */}
                         <div className="space-y-4">
-                            <h3 className="text-19 font-tobias font-700 text-white border-b border-border pb-2">4. Compliance & Consent</h3>
+                            <h3 className="text-19 font-tobias font-700 text-white pb-2">4. Compliance & Consent</h3>
 
                             <div className="w-full md:w-1/2 relative flex flex-col mb-6">
                                 <select name="citizenship" required defaultValue="" className="flex h-11 w-full rounded-md border border-border bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
@@ -158,7 +158,7 @@ export function InterestForm() {
                             {state.errors?.consentToStore && <span className="text-xs text-red-500 block">{state.errors.consentToStore[0]}</span>}
                         </div>
 
-                        <div className="pt-6 border-t border-border flex items-center justify-between">
+                        <div className="pt-6 flex items-center justify-between">
                             <span className="text-xs text-slate-500">Fields marked with * are required.</span>
                             <Button type="submit" size="lg" disabled={isPending} className="w-full md:w-auto px-8">
                                 {isPending ? "Submitting securely..." : "Submit Interest"}
