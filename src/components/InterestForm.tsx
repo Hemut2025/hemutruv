@@ -2,6 +2,7 @@
 
 import { useActionState, useEffect, useState } from "react";
 import { submitInterestForm, type InterestFormState } from "@/app/actions/submit-interest";
+import { COUNTRIES } from "@/lib/countries";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Card, CardContent } from "./ui/card";
@@ -72,10 +73,7 @@ export function InterestForm() {
                                 <div className="w-full relative flex flex-col">
                                     <select name="country" required defaultValue="" className="flex h-11 w-full rounded-md bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
                                         <option value="" disabled>Country of Residence *</option>
-                                        <option value="US">United States</option>
-                                        <option value="UK">United Kingdom</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="Other">Other</option>
+                                        {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
                                     </select>
                                     {state.errors?.country && <span className="text-xs text-red-500 mt-1">{state.errors.country[0]}</span>}
                                 </div>
@@ -102,31 +100,14 @@ export function InterestForm() {
                             </div>
                         </div>
 
-                        {/* Background */}
-                        <div className="space-y-4">
-                            <h3 className="text-19 font-tobias font-700 text-white pb-2">3. Background</h3>
-                            <div className="space-y-4">
-                                <div className="w-full relative flex flex-col">
-                                    <textarea name="background" required placeholder="Short professional background (e.g. Current role, prior exits, thesis focus) *" className="flex min-h-[100px] w-full rounded-md bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange resize-none p-4 placeholder:text-slate-500 text-foreground"></textarea>
-                                    {state.errors?.background && <span className="text-xs text-red-500 mt-1">{state.errors.background[0]}</span>}
-                                </div>
-                                <div className="w-full relative flex flex-col">
-                                    <textarea name="howCanHelp" placeholder="How might you help Hemut? (Optional) - Networks, expertise, recruiting, etc." className="flex min-h-[100px] w-full rounded-md bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange resize-none p-4 placeholder:text-slate-500 text-foreground"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
                         {/* Compliance */}
                         <div className="space-y-4">
-                            <h3 className="text-19 font-tobias font-700 text-white pb-2">4. Compliance & Consent</h3>
+                            <h3 className="text-19 font-tobias font-700 text-white pb-2">3. Compliance & Consent</h3>
 
                             <div className="w-full md:w-1/2 relative flex flex-col mb-6">
                                 <select name="citizenship" required defaultValue="" className="flex h-11 w-full rounded-md bg-surface px-3 py-2 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pastel-orange appearance-none text-foreground">
                                     <option value="" disabled>Country of Citizenship *</option>
-                                    <option value="US">United States</option>
-                                    <option value="UK">United Kingdom</option>
-                                    <option value="CA">Canada</option>
-                                    <option value="Other">Other</option>
+                                    {COUNTRIES.map(c => <option key={c} value={c}>{c}</option>)}
                                 </select>
                                 {state.errors?.citizenship && <span className="text-xs text-red-500 mt-1">{state.errors.citizenship[0]}</span>}
                             </div>
