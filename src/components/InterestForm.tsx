@@ -36,10 +36,10 @@ export function InterestForm() {
                         Thank you for your interest in Hemut. We have recorded your information. Please use the widget below to schedule your 10-15 minute introductory call.
                     </p>
 
-                    <div className="mt-8 w-full min-h-[600px] bg-white rounded-xl overflow-hidden">
+                    <div className="mt-8 w-full h-[800px] md:h-[1000px]">
                         <InlineWidget
-                            url={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/placeholder-hemut/15min"}
-                            styles={{ height: "600px", width: "100%" }}
+                            url={process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com/cheema-hemut/coffee-chat"}
+                            styles={{ height: "100%", width: "100%" }}
                         />
                     </div>
                 </CardContent>
