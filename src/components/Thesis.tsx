@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { Shield, Truck, Network, Target } from "lucide-react";
 
 export function Thesis() {
     return (
@@ -18,8 +17,8 @@ export function Thesis() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <Card className="border-border shadow-sm hover:shadow-md transition-shadow bg-surface">
                         <CardHeader className="pb-4">
-                            <div className="w-12 h-12 bg-pastel-orange/10 text-pastel-orange rounded-lg flex items-center justify-center mb-4 border border-pastel-orange/20">
-                                <Network className="w-6 h-6" />
+                            <div className="mb-6">
+                                <span className="text-5xl md:text-6xl font-tobias font-900 text-pastel-orange/30 block tracking-tighter">01</span>
                             </div>
                             <CardTitle className="text-21 font-tobias font-700 text-white">AI-Native TMS</CardTitle>
                         </CardHeader>
@@ -32,8 +31,8 @@ export function Thesis() {
 
                     <Card className="border-border shadow-sm hover:shadow-md transition-shadow bg-surface">
                         <CardHeader className="pb-4">
-                            <div className="w-12 h-12 bg-pastel-orange/10 text-pastel-orange-1 rounded-lg flex items-center justify-center mb-4">
-                                <Truck className="w-6 h-6" />
+                            <div className="mb-6">
+                                <span className="text-5xl md:text-6xl font-tobias font-900 text-pastel-orange/30 block tracking-tighter">02</span>
                             </div>
                             <CardTitle className="text-21 font-tobias font-700 text-white">$0 Compliance Hardware</CardTitle>
                         </CardHeader>
@@ -46,8 +45,8 @@ export function Thesis() {
 
                     <Card className="border-border shadow-sm hover:shadow-md transition-shadow bg-surface">
                         <CardHeader className="pb-4">
-                            <div className="w-12 h-12 bg-pastel-orange/10 text-pastel-orange-1 rounded-lg flex items-center justify-center mb-4">
-                                <Shield className="w-6 h-6" />
+                            <div className="mb-6">
+                                <span className="text-5xl md:text-6xl font-tobias font-900 text-pastel-orange/30 block tracking-tighter">03</span>
                             </div>
                             <CardTitle className="text-21 font-tobias font-700 text-white">The Direct Network</CardTitle>
                         </CardHeader>
@@ -60,8 +59,8 @@ export function Thesis() {
 
                     <Card className="border-border shadow-sm hover:shadow-md transition-shadow bg-surface">
                         <CardHeader className="pb-4">
-                            <div className="w-12 h-12 bg-pastel-orange/10 text-pastel-orange-1 rounded-lg flex items-center justify-center mb-4">
-                                <Target className="w-6 h-6" />
+                            <div className="mb-6">
+                                <span className="text-5xl md:text-6xl font-tobias font-900 text-pastel-orange/30 block tracking-tighter">04</span>
                             </div>
                             <CardTitle className="text-21 font-tobias font-700 text-white">Proven Traction</CardTitle>
                         </CardHeader>

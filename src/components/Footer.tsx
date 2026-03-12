@@ -5,7 +5,7 @@ export function Footer() {
 
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-white/10 pb-6 mb-8 gap-4 md:gap-0">
                     <div className="flex flex-col md:flex-row items-start md:items-baseline gap-2 md:gap-6">
-                        <h4 className="text-white text-19 font-tobias font-700 tracking-tight">Hemut Inc.</h4>
+                        <h4 className="text-white text-19 font-tobias font-700 tracking-tight">Hemut Co.</h4>
                         <p className="font-300 text-dark-gray-1 text-13">Confidential – Intended for private circulation only.</p>
                     </div>
                     <div>

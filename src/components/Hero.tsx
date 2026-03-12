@@ -13,7 +13,16 @@ export function Hero() {
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent to-background/90"></div>
             </div>
 
-            <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-6 duration-1000 ease-out">
+            {/* Header Logos */}
+            <div className="absolute top-0 left-0 right-0 p-6 md:p-8 flex justify-between items-center z-20 w-full max-w-7xl mx-auto">
+                <img src="/hemut-logo-v2.png" alt="Hemut" className="h-8 md:h-12 object-contain" />
+                <div className="flex items-center gap-2 md:gap-3">
+                    <span className="text-white-smoke-1 text-xs md:text-sm font-oldschool-grotesk font-500 uppercase tracking-widest">Backed by</span>
+                    <img src="/yc-logo.png" alt="Y Combinator" className="h-8 md:h-12 object-contain" />
+                </div>
+            </div>
+
+            <div className="relative z-10 max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-6 duration-1000 ease-out mt-12 md:mt-0">
                 <h1 className="text-48 md:text-72 font-tobias font-700 tracking-tight text-white leading-60 md:leading-79">
                     Invest in the Driver Network{" "}
                     <span className="block text-pastel-orange mt-2">for Direct Freight</span>
