@@ -46,12 +46,14 @@ export function Hero() {
 
             {/* Founder Video */}
             <div className="mt-16 relative z-10 w-full max-w-5xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl border border-border">
-                <iframe
-                    src="https://drive.google.com/file/d/1_QwROiS2mfBQ0wkjDJ7_FBLe6twAX9-4/preview"
-                    className="w-full h-full"
-                    allow="autoplay"
-                    allowFullScreen
-                ></iframe>
+                <video
+                    className="w-full h-full object-cover"
+                    poster="/founder-poster.jpg"
+                    controls
+                    preload="none"
+                >
+                    <source src="/founder-video.mp4" type="video/mp4" />
+                </video>
             </div>
         </section>
     );
