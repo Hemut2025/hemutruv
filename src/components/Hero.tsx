@@ -44,15 +44,14 @@ export function Hero() {
                 </div>
             </div>
 
-            {/* Video Placeholder */}
-            <div className="mt-16 relative z-10 w-full max-w-5xl mx-auto aspect-video bg-surface rounded-xl overflow-hidden shadow-2xl border border-border flex items-center justify-center group text-white-smoke-1">
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-300"></div>
-                <div className="flex flex-col items-center space-y-3 relative z-10">
-                    <svg className="w-16 h-16 text-dark-gray-1 group-hover:text-pastel-orange transition-colors" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                    </svg>
-                    <span className="text-15 font-oldschool-grotesk font-600 tracking-0832 uppercase">Founder Video (Placeholder)</span>
-                </div>
+            {/* Founder Video */}
+            <div className="mt-16 relative z-10 w-full max-w-5xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl border border-border">
+                <iframe
+                    src="https://drive.google.com/file/d/1_QwROiS2mfBQ0wkjDJ7_FBLe6twAX9-4/preview"
+                    className="w-full h-full"
+                    allow="autoplay"
+                    allowFullScreen
+                ></iframe>
             </div>
         </section>
     );
