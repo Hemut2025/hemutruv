@@ -6,19 +6,24 @@ import Link from "next/link";
 
 export function Hero() {
     const bgVideoRef = useRef<HTMLVideoElement>(null);
+    const founderVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        const video = bgVideoRef.current;
-        if (video) {
-            video.play().catch(() => {});
-        }
+        [bgVideoRef.current, founderVideoRef.current].forEach((video) => {
+            if (video) {
+                // React doesn't reliably set the muted attribute on video elements,
+                // so we set it via the DOM property as a workaround for mobile autoplay.
+                video.muted = true;
+                video.play().catch(() => {});
+            }
+        });
     }, []);
 
     return (
         <section className="relative w-full py-20 md:py-32 flex flex-col items-center justify-center text-center px-4 bg-background overflow-hidden min-h-screen">
             {/* Video Background */}
             <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-                <video ref={bgVideoRef} src="/Hero_Home_Page.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-60"></video>
+                <video ref={bgVideoRef} src="/Hero_Home_Page.mp4" autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover opacity-60"></video>
                 <div className="absolute inset-0 bg-background/40"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent to-background/90"></div>
             </div>
@@ -57,10 +62,14 @@ export function Hero() {
             {/* Founder Video */}
             <div className="mt-16 relative z-10 w-full max-w-5xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl border border-border">
                 <video
+                    ref={founderVideoRef}
                     className="w-full h-full object-cover"
                     poster="/founder-poster.jpg"
-                    controls
-                    preload="none"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="auto"
                 >
                     <source src="/founder-video.mp4" type="video/mp4" />
                 </video>
