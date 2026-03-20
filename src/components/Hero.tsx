@@ -6,30 +6,25 @@ import Link from "next/link";
 
 export function Hero() {
     const bgVideoRef = useRef<HTMLVideoElement>(null);
-    const founderVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        const videos = [bgVideoRef.current, founderVideoRef.current].filter(Boolean) as HTMLVideoElement[];
+        // Only autoplay the background video (desktop only via CSS hidden md:block)
+        const video = bgVideoRef.current;
+        if (!video) return;
 
-        const cleanups: (() => void)[] = [];
+        video.setAttribute('webkit-playsinline', '');
+        video.setAttribute('playsinline', '');
+        video.muted = true;
 
-        videos.forEach((video) => {
-            // Required for iOS Safari — React can't set these as props reliably
-            video.setAttribute('webkit-playsinline', '');
-            video.setAttribute('playsinline', '');
-            video.muted = true;
+        const tryPlay = () => video.play().catch(() => {});
 
-            const tryPlay = () => video.play().catch(() => {});
+        if (video.readyState >= 3) {
+            tryPlay();
+        } else {
+            video.addEventListener('canplay', tryPlay, { once: true });
+        }
 
-            if (video.readyState >= 3) {
-                tryPlay();
-            } else {
-                video.addEventListener('canplay', tryPlay, { once: true });
-                cleanups.push(() => video.removeEventListener('canplay', tryPlay));
-            }
-        });
-
-        return () => cleanups.forEach((fn) => fn());
+        return () => video.removeEventListener('canplay', tryPlay);
     }, []);
 
     return (
@@ -39,7 +34,7 @@ export function Hero() {
                 {/* Video: desktop only */}
                 <video ref={bgVideoRef} src="/Hero_Home_Page.mp4" autoPlay loop muted playsInline preload="auto" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-60"></video>
                 {/* Static fallback: mobile only */}
-                <img src="/home-bg-1.png" alt="" aria-hidden="true" className="block md:hidden absolute inset-0 w-full h-full object-cover opacity-60" />
+                <img src="/home-bg-2.png" alt="" aria-hidden="true" className="block md:hidden absolute inset-0 w-full h-full object-cover opacity-60" />
                 <div className="absolute inset-0 bg-background/40"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent to-background/90"></div>
             </div>
@@ -78,14 +73,11 @@ export function Hero() {
             {/* Founder Video */}
             <div className="mt-16 relative z-10 w-full max-w-5xl mx-auto aspect-video rounded-xl overflow-hidden shadow-2xl border border-border">
                 <video
-                    ref={founderVideoRef}
                     className="w-full h-full object-cover"
                     poster="/founder-poster.jpg"
-                    autoPlay
-                    loop
-                    muted
+                    controls
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                 >
                     <source src="/founder-video.mp4" type="video/mp4" />
                 </video>
