@@ -37,7 +37,7 @@ export function Team() {
                             <div className="shrink-0">
                                 {member.imageUrl ? (
                                     <div className="w-24 h-24 rounded-full bg-surface border-2 border-pastel-orange flex items-center justify-center overflow-hidden relative">
-                                        <Image src={member.imageUrl} alt={member.name} fill className="object-cover" />
+                                        <Image src={member.imageUrl} alt={member.name} fill className={member.imageUrl === "/hemut-logo-v2.png" ? "object-contain p-3" : "object-cover"} />
                                     </div>
                                 ) : (
                                     <div className="w-24 h-24 rounded-full bg-surface border-2 border-pastel-orange flex items-center justify-center overflow-hidden">

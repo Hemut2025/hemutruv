@@ -9,21 +9,37 @@ export function Hero() {
     const founderVideoRef = useRef<HTMLVideoElement>(null);
 
     useEffect(() => {
-        [bgVideoRef.current, founderVideoRef.current].forEach((video) => {
-            if (video) {
-                // React doesn't reliably set the muted attribute on video elements,
-                // so we set it via the DOM property as a workaround for mobile autoplay.
-                video.muted = true;
-                video.play().catch(() => {});
+        const videos = [bgVideoRef.current, founderVideoRef.current].filter(Boolean) as HTMLVideoElement[];
+
+        const cleanups: (() => void)[] = [];
+
+        videos.forEach((video) => {
+            // Required for iOS Safari — React can't set these as props reliably
+            video.setAttribute('webkit-playsinline', '');
+            video.setAttribute('playsinline', '');
+            video.muted = true;
+
+            const tryPlay = () => video.play().catch(() => {});
+
+            if (video.readyState >= 3) {
+                tryPlay();
+            } else {
+                video.addEventListener('canplay', tryPlay, { once: true });
+                cleanups.push(() => video.removeEventListener('canplay', tryPlay));
             }
         });
+
+        return () => cleanups.forEach((fn) => fn());
     }, []);
 
     return (
         <section className="relative w-full py-20 md:py-32 flex flex-col items-center justify-center text-center px-4 bg-background overflow-hidden min-h-screen">
             {/* Video Background */}
             <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
-                <video ref={bgVideoRef} src="/Hero_Home_Page.mp4" autoPlay loop muted playsInline preload="auto" className="absolute inset-0 w-full h-full object-cover opacity-60"></video>
+                {/* Video: desktop only */}
+                <video ref={bgVideoRef} src="/Hero_Home_Page.mp4" autoPlay loop muted playsInline preload="auto" className="hidden md:block absolute inset-0 w-full h-full object-cover opacity-60"></video>
+                {/* Static fallback: mobile only */}
+                <img src="/home-bg-1.png" alt="" aria-hidden="true" className="block md:hidden absolute inset-0 w-full h-full object-cover opacity-60" />
                 <div className="absolute inset-0 bg-background/40"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-transparent to-background/90"></div>
             </div>
