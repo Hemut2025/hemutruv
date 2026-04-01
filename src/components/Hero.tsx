@@ -43,7 +43,7 @@ export function Hero() {
             <div className="absolute top-0 left-0 right-0 p-6 md:p-8 flex justify-between items-center z-20 w-full max-w-7xl mx-auto">
                 <img src="/hemut-logo-v2.png" alt="Hemut" className="h-8 md:h-12 object-contain" />
                 <div className="flex items-center gap-2 md:gap-3">
-                    <span className="text-white-smoke-1 text-xs md:text-sm font-oldschool-grotesk font-500 uppercase tracking-widest">Backed by</span>
+                    <span className="hidden sm:inline text-white-smoke-1 text-xs md:text-sm font-oldschool-grotesk font-500 uppercase tracking-widest">Backed by</span>
                     <img src="/yc-logo.png" alt="Y Combinator" className="h-8 md:h-12 object-contain" />
                 </div>
             </div>
