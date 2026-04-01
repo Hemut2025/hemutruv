@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { AdminEntry } from "./AdminEntry";
@@ -11,6 +11,8 @@ type HeroProps = {
 
 export function Hero({ defaultAdminOpen = false }: HeroProps) {
     const bgVideoRef = useRef<HTMLVideoElement>(null);
+    const [copyStatus, setCopyStatus] = useState<"idle" | "copied" | "failed">("idle");
+    const copyTimeoutRef = useRef<number | null>(null);
 
     useEffect(() => {
         // Only autoplay the background video (desktop only via CSS hidden md:block)
@@ -31,6 +33,31 @@ export function Hero({ defaultAdminOpen = false }: HeroProps) {
 
         return () => video.removeEventListener('canplay', tryPlay);
     }, []);
+
+    useEffect(() => {
+        return () => {
+            if (copyTimeoutRef.current) {
+                window.clearTimeout(copyTimeoutRef.current);
+            }
+        };
+    }, []);
+
+    async function handleCopyAngelListLink() {
+        try {
+            await navigator.clipboard.writeText("https://angellist.com/i/Biwgd");
+            setCopyStatus("copied");
+        } catch {
+            setCopyStatus("failed");
+        }
+
+        if (copyTimeoutRef.current) {
+            window.clearTimeout(copyTimeoutRef.current);
+        }
+
+        copyTimeoutRef.current = window.setTimeout(() => {
+            setCopyStatus("idle");
+        }, 2000);
+    }
 
     return (
         <section className="relative w-full py-20 md:py-32 flex flex-col items-center justify-center text-center px-4 bg-background overflow-hidden min-h-screen">
@@ -75,6 +102,19 @@ export function Hero({ defaultAdminOpen = false }: HeroProps) {
                             Schedule a Call
                         </Button>
                     </Link>
+                    <Button
+                        type="button"
+                        size="lg"
+                        variant="secondary"
+                        className="w-full sm:w-auto font-600 font-oldschool-grotesk text-white border-border hover:bg-white/5 bg-transparent"
+                        onClick={handleCopyAngelListLink}
+                    >
+                        {copyStatus === "copied"
+                            ? "Copied AngelList link"
+                            : copyStatus === "failed"
+                              ? "Copy failed"
+                              : "Copy angellist link"}
+                    </Button>
                 </div>
             </div>
 
