@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { logoutAdmin } from "@/app/actions/admin-auth";
+import { CopyAngelListButton } from "@/components/CopyAngelListButton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { isValidAdminSessionToken, ADMIN_COOKIE_NAME } from "@/lib/admin-auth";
@@ -95,11 +96,14 @@ export default async function AdminPage() {
             </p>
           </div>
 
-          <form action={logoutAdmin}>
-            <Button type="submit" variant="secondary">
-              Log out
-            </Button>
-          </form>
+          <div className="flex flex-wrap items-center gap-3">
+            <CopyAngelListButton />
+            <form action={logoutAdmin}>
+              <Button type="submit" variant="secondary">
+                Log out
+              </Button>
+            </form>
+          </div>
         </div>
 
         <section className="grid gap-4 md:grid-cols-3">
