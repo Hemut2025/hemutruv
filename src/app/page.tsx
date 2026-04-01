@@ -5,11 +5,20 @@ import { Team } from "@/components/Team";
 import { InterestForm } from "@/components/InterestForm";
 import { Footer } from "@/components/Footer";
 
-export default function Home() {
+type HomeProps = {
+  searchParams?: Promise<{
+    admin?: string;
+  }>;
+};
+
+export default async function Home({ searchParams }: HomeProps) {
+  const resolvedSearchParams = await searchParams;
+  const defaultAdminOpen = resolvedSearchParams?.admin === "1";
+
   return (
     <div className="flex flex-col min-h-screen">
       <main className="flex-1 flex flex-col w-full items-center">
-        <Hero />
+        <Hero defaultAdminOpen={defaultAdminOpen} />
         <Thesis />
         <WhyNow />
         <Team />

@@ -1,7 +1,6 @@
 "use server";
 
 import { z } from "zod";
-import { db } from "@/lib/db/client";
 
 const formSchema = z.object({
     fullName: z.string().min(2, "Name is required"),
@@ -75,6 +74,7 @@ export async function submitInterestForm(
     };
 
     try {
+        const { db } = await import("@/lib/db/client");
         await db`
             INSERT INTO investor_interest (
                 full_name,
